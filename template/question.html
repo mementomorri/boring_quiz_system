@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вопрос</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <div class="game-quiz-container">
+            <div class="game-details-container">
+<!--                <h1> Вопрос # <span id="question-number">?</span> / 10</h1>-->
+            </div>
+            <div class="modal-content-container">
+                {% if question %}
+                    <h1>{{question}}</h1>
+                {% endif %}
+            </div>
+            <form method="post" action="test">
+                <input type="hidden" name="q_id" value="{{quest_id}}">
+                <div class="game-options-container">
+                    {% for answer in answers_list %}
+                        <span>
+                            <input type="radio" name="ans_text" id="option-{{ answer }}" class="radio" value="{{ answer }}">
+                            <label for="option-{{ answer }}" class="option" id="option-{{ answer }}-label">{{ answer }}</label>
+                        </span>
+                    {% endfor %}
+                </div>
+                    <div class="next-button-container">
+                        <p><input class="btn" type="submit" value="Ответить"></p>
+                    </div>
+            </form>
+        </div>
+    </main>
+</body>
