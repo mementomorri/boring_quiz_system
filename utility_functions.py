@@ -1,7 +1,7 @@
 from random import shuffle
 from flask import session, request, render_template
 
-from db_crud import get_all_quiz, check_answer
+from db_crud import get_all_quiz, check_answer, get_quiz_lenght
 from object_types import Question, template
 
 
@@ -9,13 +9,12 @@ def start_quiz(quiz_id: int | None) -> None:
     """ Создаёт нужные значения в сессии соединения пользователя.
     :param quiz_id: int - номер выбранной викторины.
     """
-    if quiz_id is not None:
-        session['quiz'] = quiz_id
-    else:
-        session['quiz'] = 1
+
+    session['quiz'] = quiz_id if quiz_id is not None else 1
     session['last_question'] = 0
     session['answers'] = 0
     session['total'] = 0
+    session['quiz_length'] = get_quiz_lenght(session['quiz'])
 
 
 def end_quiz() -> None:
@@ -55,4 +54,6 @@ def question_form(question: Question) -> template:
         question.answer, question.wrong1, question.wrong2, question.wrong3
     ]
     shuffle(answers_list)  # перемешиваем ответы, передаём в шаблон и возвращаем форму
-    return render_template('question.html', question=question.question, quest_id=question.id, answers_list=answers_list)
+    return render_template('question.html', question=question.question, quest_id=question.id,
+                           answers_list=answers_list, question_counter=int(session['total'])+1,
+                           quiz_length=session['quiz_length'])

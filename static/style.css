@@ -10,13 +10,8 @@ html, body{
     height: 100%;
 }
 
-
 body{
     font-family: 'Montserrat', serif;
-
-}
-
-main{
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -30,8 +25,8 @@ main{
     background-size: cover;
     background-position: center;
     -webkit-backface-visibility: hidden;
-    -moz-backface-visibility:    hidden;
-    -ms-backface-visibility:     hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
 }
 
 select {

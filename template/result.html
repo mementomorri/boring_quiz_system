@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Результат викторины</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <main>
+    <head>
+        <meta charset="UTF-8">
+        <title>Результат викторины</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
         <div class="game-quiz-container">
             <h1>Ваш результат:</h1>
             <div class="outer-div"><h3>{{ right }} правильных ответов из {{ total }}</h3></div>
@@ -14,6 +13,5 @@
                 <a href="{{url_for('index')}}" class="button"> В начало </a>
             </div>
         </div>
-    </main>
-</body>
+    </body>
 </html>

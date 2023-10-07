@@ -135,6 +135,25 @@ def add_link(id_question: int, id_quiz: int) -> None:
     close_db_connection()
 
 
+def get_quiz_lenght(id_quiz: int) -> int:
+    """
+    Возвращает количество вопросов в викторине.
+    Вспомогательная функция для отображения количества вопросов на форме с вопросом.
+    :param id_quiz: int - номер викторины для идентификации викторины в БД;
+    :return: int - количество вопросов в викторине.
+    """
+    open_db_connection()
+    query = '''
+    SELECT question_id
+    FROM quiz_content 
+    WHERE quiz_content.quiz_id == ?
+     '''
+    cursor.execute(query, [id_quiz])
+    result = cursor.fetchall()
+    close_db_connection()
+    return len(result) if result is not None else 0
+
+
 def get_question_after(last_question_id: int = 0, id_quiz: int = 1) -> Question | None:
     """ Возвращает следующий вопрос после вопроса с переданным id,
     для первого вопроса передается значение по умолчанию

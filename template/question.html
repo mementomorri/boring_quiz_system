@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Вопрос</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <main>
+    <head>
+        <meta charset="UTF-8">
+        <title>Вопрос</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
         <div class="game-quiz-container">
             <div class="game-details-container">
-<!--                <h1> Вопрос # <span id="question-number">?</span> / 10</h1>-->
+                <h1> Вопрос # <span id="question-number">{{ question_counter }}</span> / {{ quiz_length }}</h1>
             </div>
             <div class="modal-content-container">
                 {% if question %}
@@ -31,5 +30,5 @@
                     </div>
             </form>
         </div>
-    </main>
-</body>
+    </body>
+</html>
